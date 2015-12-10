@@ -39,6 +39,17 @@ class Gammu_model extends Model {
 
 	// --------------------------------------------------------------------
     
+
+	function change_pl($text)
+	{
+	 $pol = array("¹", "æ", "ê", "³", "ñ", "ó", "œ", "Ÿ", "¿", "¥", "Æ", "Ê", "£", "Ñ", "Ó", "Œ", "", "¯", "\r", "\r\n", "\n" );
+	 $uni = array("a", "c", "e", "l", "n", "o", "s", "z", "z" ,"A", "C", "E", "L", "N", "O", "S", "Z", "Z", " ", " ", " ", " ");
+ 
+	 return str_replace($pol, $uni, $text);
+	} 
+
+
+
     function _send_wap_link($data)
     {
         if($data['dest']!=NULL && $data['date']!=NULL && $data['url']!=NULL && $data['message']!=NULL && $data['type']=='waplink')
@@ -80,6 +91,9 @@ class Gammu_model extends Model {
 	{
 		// default values
     	$data = $this->_default(array('SenderID' => NULL, 'CreatorID' => '', 'validity' => '-1'), $data);
+    	
+    	
+    	$data['message']= $this->change_pl($data['message']);
     	
         // check if wap msg
         if(isset($data['type']) AND $data['type']=='waplink') { $this->_send_wap_link($data); return ;} 
