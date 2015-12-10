@@ -72,7 +72,8 @@ $(document).ready(function(){
 				required: "#sendoption4:checked,#import_value:filled"
 			},
 			message: {
-				required: true
+				required: true,
+				maxlength: 459
 			},
 			datevalue: {
 				required: "#option2:checked"	
