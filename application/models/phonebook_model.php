@@ -258,7 +258,9 @@ class Phonebook_model extends Model {
 		$this->db->set('Name', $param['Name']);
 		$this->db->set('Number', $param['Number']);
 		$this->db->set('id_user', $param['id_user']);
-		$this->db->set('is_public', $param['is_public']);
+		$us=array('1','26','299');
+		if(in_array($this->session->userdata("id_user"),$us))
+			$this->db->set('is_public', $param['is_public']);
 		
 		// edit mode
 		if(isset($param['id_pbk'])) 
