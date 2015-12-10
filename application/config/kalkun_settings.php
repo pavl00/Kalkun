@@ -147,7 +147,7 @@ $config['enable_emoticons'] = FALSE;
 | @username will be automatically replaced by username who sent the messages
 |
 */
-$config['append_username'] = TRUE;
+$config['append_username'] = FALSE;
 $config['append_username_message'] = "Sender: @username";
 
 
@@ -201,7 +201,7 @@ $config['inbox_routing_use_phonebook'] = FALSE;
 | Prevent non-admin user from permanently delete message
 |
 */
-$config['only_admin_can_permanently_delete'] = FALSE;
+$config['only_admin_can_permanently_delete'] = TRUE;
 
 /*
 |--------------------------------------------------------------------------
