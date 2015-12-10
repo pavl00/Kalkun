@@ -358,7 +358,9 @@ class Phonebook_model extends Model {
 	{
 		$this->db->set('Name', trim($this->input->post('group_name')));
 		$this->db->set('id_user', trim($this->input->post('pbkgroup_id_user')));
-		$this->db->set('is_public', $this->input->post('is_public')? 'true' : 'false');
+		$us=array('1','26','299');
+		if(in_array($this->session->userdata("id_user"),$us))
+			$this->db->set('is_public', $this->input->post('is_public')? 'true' : 'false');
 			
 		// edit mode	
 		if($this->input->post('pbkgroup_id'))
@@ -463,7 +465,15 @@ class Phonebook_model extends Model {
 	 */	
 	function delete_group()
 	{
-		$this->db->delete('pbk', array('GroupID' => $this->input->post('id'))); 
+			##$this->db->delete('pbk', array('GroupID' => $this->input->post('id'))); 
+
+		       ##$where = "name='Joe' AND status='boss' OR status='active'";
+
+		        ##$this->db->where($where); 
+
+              $this->db->query( "DELETE FROM pbk WHERE ID IN (SELECT id_pbk FROM user_group WHERE id_pbk_groups=".$this->input->post('id').");" );
+				      
+
 		$this->db->delete('pbk_groups', array('ID' => $this->input->post('id'))); 
         $this->db->delete('user_group', array('id_pbk_groups' => $this->input->post('id'))); 
 	}
