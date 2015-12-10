@@ -271,8 +271,13 @@ class Phonebook extends MY_Controller {
 	{
 		$this->load->library('csvreader');
 		$filePath = $_FILES["csvfile"]["tmp_name"];
-		$csvData = $this->csvreader->parse_file($filePath, true);	
-		
+		$csvData = $this->csvreader->parse_file($filePath, true);
+	
+		if($this->input->post('importgroupvalue')){
+              	$this->db->query( "DELETE FROM pbk WHERE ID IN (SELECT id_pbk FROM user_group WHERE id_pbk_groups=".$this->input->post('importgroupvalue').");" );
+              	$this->db->delete('user_group', array('id_pbk_groups' => $this->input->post('importgroupvalue'))); 
+		}
+
 		$n=0;
 		foreach($csvData as $field):
 			$pbk['Name'] = $field["Name"];
