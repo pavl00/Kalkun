@@ -44,7 +44,7 @@ class Kalkun_model extends Model {
 	function login()
 	{
 		$username = $this->input->post('username');
-		$password = sha1($this->input->post('password'));
+		$password = md5($this->input->post('password'));
 		$this->db->from('user');
 		$this->db->where('username', $username);
 		$this->db->where('password', $password);
@@ -327,7 +327,7 @@ class Kalkun_model extends Model {
 			break;
 			
 			case 'password':
-				$this->db->set('password', sha1($this->input->post('new_password')));
+				$this->db->set('password', md5($this->input->post('new_password')));
 				$this->db->where('id_user', $this->session->userdata('id_user'));
 				$this->db->update('user');				
 			break;
@@ -359,7 +359,7 @@ class Kalkun_model extends Model {
 	 */	
     function update_password($uid = NULL)
 	{
-		$this->db->set('password', sha1($this->input->post('new_password')));
+		$this->db->set('password', md5($this->input->post('new_password')));
 		$this->db->where('id_user', $uid);
 		$this->db->update('user');
 	}

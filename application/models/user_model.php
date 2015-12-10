@@ -91,7 +91,7 @@ class User_model extends Model {
 		}
 		else 
 		{
-			$this->db->set('password', sha1($this->input->post('password')));
+			$this->db->set('password', md5($this->input->post('password')));
 			$this->db->insert('user');
 			
 			// user_settings

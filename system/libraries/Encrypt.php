@@ -30,7 +30,7 @@ class CI_Encrypt {
 
 	var $CI;
 	var $encryption_key	= '';
-	var $_hash_type	= 'sha1';
+	var $_hash_type	= 'md5';
 	var $_mcrypt_exists = FALSE;
 	var $_mcrypt_cipher;
 	var $_mcrypt_mode;
